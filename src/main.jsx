@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
-// import { KeepAliveProvider, withKeepAlive } from 'keepalive-react-component'
 import { KeepAliveProvider, withKeepAlive } from './keepalive-react/index'
 
 import Home from './components/Home';
