@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 
-const Home = () => {
+const Home = (props) => {
     return (
         <div>
-            <button>重置添加</button>
+            <button>添加用户</button>
             <button>重置列表</button>
         </div>
     )
