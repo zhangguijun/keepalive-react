@@ -17,6 +17,7 @@ function cacheReducer(cacheStatus, action) {
                     doms: undefined, // 虚拟dom 对应真是dom
                     reactElement: payload.reactElement, // 要渲染的虚拟dom
                     status: cacheTypes.CREATE, // 状态是创建中
+                    scrolls: {}, // 滚动信息保存对象 默认为空 key 为滚动的dom， 值为滚动的位置
                 }
             }
         case cacheTypes.CREATED:

@@ -11,19 +11,30 @@ import CacheContext from './cacheContext';
 //  */
 
 
-function withKeepAlive(OldComponent, { cacheId = window.location.pathname }) {
+function withKeepAlive(OldComponent, { cacheId = window.location.pathname, scroll = false }) {
     return function (props) {
-        const { mount, cacheStates, dispatch } = useContext(CacheContext);
+        const { mount, cacheStates, dispatch,  handleScroll } = useContext(CacheContext);
         const ref = useRef(null);
         useEffect(() => {
             let cacheState = cacheStates[cacheId];
             if (cacheState && cacheState.doms) {
                 let doms = cacheState.doms;
-                doms.forEach(dom => ref.current.appendChild(dom));
+                doms.forEach(dom=>ref.current.appendChild(dom));
+                if(scroll){
+                   doms.forEach(dom=>{
+                       if (cacheState.scrolls[dom])
+                         dom.scrollTop = cacheState.scrolls[dom];
+                   });
+                  }
             } else {
                 mount({ cacheId, reactElement: <OldComponent {...props} /> })
             }
         }, [cacheStates, dispatch, mount, props]);
+        useEffect(()=>{
+            if(scroll){
+                ref.current.addEventListener('scroll', handleScroll.bind(null, cacheId),true);
+            }
+        },[handleScroll]);
         return <div id={`keepalive_${cacheId}`} ref={ref} />;
     }
 }
