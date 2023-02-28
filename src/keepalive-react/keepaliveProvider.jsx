@@ -25,6 +25,7 @@ function KeepAliveProvider(props) {
                     id={`cache_${cacheId}`}
                     key={cacheId}
                     ref={(divDom) => {
+                        console.log(divDom)
                         let cacheState = cacheStates[cacheId];
                         if (divDom && (!cacheState.doms)) {
                             let doms = Array.from(divDom.childNodes);

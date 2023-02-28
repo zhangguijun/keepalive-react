@@ -19,6 +19,7 @@ function withKeepAlive(OldComponent, { cacheId = window.location.pathname, scrol
             let cacheState = cacheStates[cacheId];
             if (cacheState && cacheState.doms) {
                 let doms = cacheState.doms;
+                // console.log(doms)
                 doms.forEach(dom=>ref.current.appendChild(dom));
                 if(scroll){
                    doms.forEach(dom=>{
